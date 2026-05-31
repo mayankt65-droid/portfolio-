@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayank Thakur — Industrial Designer</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0F0F0F;--white:#fff;--gray:#767676;--light:#f5f5f5;--border:#e5e5e5;--red:#E5001A;
+--font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--white);color:var(--black);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.cursor{position:fixed;width:10px;height:10px;background:#fff;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .2s;mix-blend-mode:difference}
+.cursor.expand{width:42px;height:42px;background:rgba(255,255,255,.3)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;transition:background .3s,border-bottom .3s}
+nav.scrolled{background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-logo{font-size:17px;font-weight:700;letter-spacing:-.02em;color:#fff;text-decoration:none;transition:color .3s;cursor:pointer}
+nav.scrolled .nav-logo{color:var(--black)}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{font-size:13px;font-weight:500;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s;position:relative;padding:4px 0;cursor:pointer}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:currentColor;transition:width .25s}
+.nav-links a:hover::after{width:100%} .nav-links a:hover{color:#fff}
+nav.scrolled .nav-links a{color:var(--gray)} nav.scrolled .nav-links a:hover{color:var(--black)}
+.nav-cta{font-size:13px;font-weight:700;color:#fff;border:1.5px solid rgba(255,255,255,.45);padding:8px 20px;text-decoration:none;transition:all .2s;cursor:pointer}
+.nav-cta:hover{background:#fff;color:var(--black);border-color:#fff}
+nav.scrolled .nav-cta{color:var(--black);border-color:var(--black)} nav.scrolled .nav-cta:hover{background:var(--black);color:#fff}
+
+/* HERO */
+#hero{height:100vh;min-height:640px;background:var(--black);display:flex;flex-direction:column;justify-content:flex-end;padding:0 2.5rem 5rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0F0F0F,#1A1A1A 50%,#0A0A0A);z-index:0}
+.hero-bg::after{content:'';position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
+.hero-content{position:relative;z-index:2}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.5rem;animation:fadeUp .9s ease both}
+.hero-title{font-size:clamp(4.5rem,10vw,9.5rem);font-weight:800;line-height:.88;letter-spacing:-.045em;color:#fff;margin-bottom:3rem;animation:fadeUp .9s .1s ease both}
+.hero-title span{display:block} .hero-title .italic{font-style:italic;font-weight:300;color:rgba(255,255,255,.55)}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;animation:fadeUp .9s .25s ease both}
+.hero-desc{max-width:380px;font-size:15px;line-height:1.7;color:rgba(255,255,255,.5)}
+.hero-desc strong{color:rgba(255,255,255,.95);font-weight:500}
+.hero-actions{display:flex;flex-direction:column;align-items:flex-end;gap:1rem;flex-shrink:0}
+.btn-primary{display:inline-flex;align-items:center;gap:.7rem;background:#fff;color:var(--black);font-size:14px;font-weight:800;letter-spacing:.02em;padding:16px 36px;text-decoration:none;transition:all .25s;text-transform:uppercase;cursor:pointer}
+.btn-primary:hover{background:var(--red);color:#fff;gap:1.2rem}
+.btn-secondary{display:inline-flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.55);font-size:13px;font-weight:500;text-decoration:none;transition:color .2s;cursor:pointer}
+.btn-secondary:hover{color:#fff}
+
+.marquee-wrap{background:var(--red);padding:13px 0;overflow:hidden}
+.marquee-track{display:flex;width:max-content;animation:marquee 28s linear infinite}
+.marquee-item{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#fff;padding:0 2.5rem;white-space:nowrap}
+
+.stats-bar{background:var(--light);border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-cell{padding:2.5rem 2rem;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:.4rem;opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.stat-cell:last-child{border-right:none} .stat-cell.visible{opacity:1;transform:translateY(0)}
+.stat-number{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.04em;line-height:1}
+.stat-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray)}
+
+.section-header{padding:4rem 2.5rem 2rem;max-width:1500px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.section-eyebrow{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gray)}
+
+.project-hero{position:relative;height:88vh;min-height:600px;display:flex;align-items:flex-end;overflow:hidden;margin-bottom:3px;opacity:0;transform:translateY(32px);transition:opacity .8s,transform .8s;cursor:pointer}
+.project-hero.visible{opacity:1;transform:translateY(0)}
+.project-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1s}
+.project-hero:hover .project-hero-bg{transform:scale(1.03)}
+.project-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,0) 30%,rgba(0,0,0,0) 50%,rgba(0,0,0,.7));z-index:1}
+.project-hero-content{position:relative;z-index:2;padding:3.5rem 2.5rem;width:100%;display:flex;align-items:flex-end;justify-content:space-between;gap:3rem}
+.proj-num{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1rem}
+.proj-hero-name{font-size:clamp(3.5rem,8vw,7.5rem);font-weight:800;letter-spacing:-.045em;line-height:.88;color:#fff;margin-bottom:1rem;text-shadow:0 2px 32px rgba(0,0,0,.4)}
+.proj-hero-name em{font-style:italic;font-weight:300;color:rgba(255,255,255,.7)}
+.proj-hero-tag{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.project-hero-right{display:flex;flex-direction:column;align-items:flex-end;gap:1.5rem;flex-shrink:0;padding-bottom:.5rem;max-width:340px}
+.proj-hero-desc{font-size:14px;line-height:1.7;color:rgba(255,255,255,.85);text-align:right;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.btn-outline-white{display:inline-flex;align-items:center;gap:.5rem;color:#fff;font-size:13px;font-weight:700;letter-spacing:.05em;padding:13px 26px;border:1.5px solid rgba(255,255,255,.5);text-transform:uppercase;transition:all .25s}
+.project-hero:hover .btn-outline-white{background:#fff;color:var(--black);border-color:#fff;gap:.9rem}
+
+.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;padding-bottom:3px;opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.project-grid.visible{opacity:1;transform:translateY(0)}
+.project-card{background:#fff;position:relative;overflow:hidden;cursor:pointer;display:flex;flex-direction:column}
+.project-card-visual{height:380px;background-size:cover;background-position:center;transition:transform .6s}
+.project-card:hover .project-card-visual{transform:scale(1.04)}
+.project-card-info{padding:2rem 2.25rem;flex:1;display:flex;flex-direction:column}
+.project-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.9rem}
+.project-card-num,.project-card-tag{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray)}
+.project-card-num{font-weight:700;letter-spacing:.15em}
+.project-card-name{font-size:2rem;font-weight:800;letter-spacing:-.035em;line-height:1;margin-bottom:.8rem}
+.project-card-line{font-size:13px;color:var(--gray);line-height:1.6;margin-bottom:1.5rem;flex:1}
+.project-card-cta{display:inline-flex;align-items:center;gap:.4rem;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--black);align-self:flex-start;border-bottom:2px solid var(--black);padding-bottom:2px;transition:all .2s}
+.project-card:hover .project-card-cta{color:var(--red);border-bottom-color:var(--red);gap:.7rem}
+
+#about{background:#fff;border-top:1px solid var(--border)}
+.about-inner{max-width:1500px;margin:0 auto;padding:6rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center}
+.about-left{opacity:0;transform:translateX(-24px);transition:opacity .7s,transform .7s} .about-left.visible{opacity:1;transform:translateX(0)}
+.about-eyebrow{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);margin-bottom:2rem}
+.about-heading{font-size:clamp(2.5rem,5vw,4.4rem);font-weight:800;letter-spacing:-.045em;line-height:.95;margin-bottom:2rem}
+.about-heading em{font-style:italic;font-weight:300;color:var(--gray)}
+.about-body{font-size:16px;line-height:1.75;color:var(--gray);margin-bottom:1rem}
+.about-cta{display:inline-flex;align-items:center;gap:.5rem;background:var(--black);color:#fff;font-size:13px;font-weight:800;letter-spacing:.04em;padding:15px 30px;text-decoration:none;transition:all .25s;text-transform:uppercase;margin-top:1.5rem}
+.about-cta:hover{background:var(--red);gap:.9rem}
+.about-right{opacity:0;transform:translateX(24px);transition:opacity .7s .15s,transform .7s .15s} .about-right.visible{opacity:1;transform:translateX(0)}
+.tl-item{display:grid;grid-template-columns:90px 1fr;gap:1.5rem;padding:1.5rem 0;border-top:1px solid var(--border)}
+.tl-year{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--gray);padding-top:3px}
+.tl-org{font-size:15px;font-weight:700;letter-spacing:-.01em;margin-bottom:3px}
+.tl-role{font-size:13px;color:var(--gray)}
+
+#skills{background:var(--black)}
+.skills-inner{max-width:1500px;margin:0 auto;padding:6rem 2.5rem}
+.skills-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4rem;gap:2rem}
+.skills-heading{font-size:clamp(2.5rem,5vw,4.2rem);font-weight:800;letter-spacing:-.045em;line-height:.95;color:#fff}
+.skills-heading em{font-style:italic;font-weight:300;color:rgba(255,255,255,.45)}
+.skills-sub{font-size:14px;color:rgba(255,255,255,.4);max-width:260px;text-align:right;line-height:1.7}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #1F1F1F}
+.skill-col{padding:2.5rem 2rem 2.5rem 0;border-right:1px solid #1F1F1F;opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.skill-col:first-child{padding-left:0} .skill-col:not(:first-child){padding-left:2rem}
+.skill-col:last-child{border-right:none;padding-right:0} .skill-col.visible{opacity:1;transform:translateY(0)}
+.skill-col-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:1.5rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.skill-chip{font-size:12px;font-weight:500;color:rgba(255,255,255,.55);border:1px solid #2A2A2A;padding:7px 14px;transition:all .2s}
+.skill-chip:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+
+#contact-cta{background:var(--black);border-top:1px solid #1A1A1A;padding:9rem 2.5rem}
+.cta-inner{max-width:1500px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:3rem}
+.cta-left{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s} .cta-left.visible{opacity:1;transform:translateY(0)}
+.cta-eyebrow{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.5rem}
+.cta-heading{font-size:clamp(3rem,6.5vw,5.8rem);font-weight:800;letter-spacing:-.045em;line-height:.92;color:#fff}
+.cta-heading em{font-style:italic;font-weight:300;color:rgba(255,255,255,.4)}
+.cta-right{display:flex;flex-direction:column;gap:1.2rem;align-items:flex-end;opacity:0;transition:opacity .7s .2s;flex-shrink:0} .cta-right.visible{opacity:1}
+.btn-cta-main{display:inline-flex;align-items:center;gap:.7rem;background:#fff;color:var(--black);font-size:15px;font-weight:800;letter-spacing:.02em;padding:20px 44px;text-decoration:none;transition:all .25s;text-transform:uppercase}
+.btn-cta-main:hover{background:var(--red);color:#fff;gap:1.1rem}
+.btn-cta-secondary{font-size:12px;font-weight:500;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.btn-cta-secondary:hover{color:#fff}
+
+footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5rem}
+.footer-inner{max-width:1500px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-size:15px;font-weight:800;letter-spacing:-.02em;color:#fff}
+.footer-links{display:flex;gap:2rem}
+.footer-links a{font-size:12px;font-weight:500;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.25)}
+
+/* ========= PROJECT DETAIL PAGES ========= */
+#project-root{position:fixed;inset:0;z-index:1000;background:#fff;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .4s}
+#project-root.open{opacity:1;visibility:visible}
+.project-page{display:none}
+.project-page.active{display:block}
+.pp-nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:60px;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.pp-back{font-size:13px;font-weight:700;color:var(--black);text-decoration:none;cursor:pointer;transition:color .2s;letter-spacing:.02em}
+.pp-back:hover{color:var(--red)}
+.pp-nav-title{font-size:13px;font-weight:600;letter-spacing:.05em;color:var(--gray)}
+.pp-nav-cta{font-size:12px;font-weight:700;color:var(--black);border:1.5px solid var(--black);padding:7px 16px;text-decoration:none;cursor:pointer;transition:all .2s}
+.pp-nav-cta:hover{background:var(--black);color:#fff}
+.pp-hero{position:relative;height:78vh;min-height:520px;display:flex;align-items:flex-end;overflow:hidden}
+.pp-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;animation:slowzoom 8s ease both}
+.pp-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,0) 40%,rgba(0,0,0,.72));z-index:1}
+.pp-hero-content{position:relative;z-index:2;padding:4rem 2.5rem;max-width:1500px;margin:0 auto;width:100%}
+.pp-num{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:1.25rem}
+.pp-title{font-size:clamp(3.5rem,9vw,8rem);font-weight:800;letter-spacing:-.045em;line-height:.86;color:#fff;margin-bottom:1.25rem;text-shadow:0 2px 40px rgba(0,0,0,.4)}
+.pp-title em{font-style:italic;font-weight:300;color:rgba(255,255,255,.7)}
+.pp-tag{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.pp-overview{max-width:1500px;margin:0 auto;padding:6rem 2.5rem;display:grid;grid-template-columns:1.4fr 1fr;gap:6rem}
+.pp-tagline{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:2rem}
+.pp-desc{font-size:17px;line-height:1.8;color:#444}
+.pp-crit-label{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid var(--black)}
+.pp-crit{list-style:none}
+.pp-crit li{font-size:14px;color:#333;padding:.9rem 0 .9rem 1.5rem;border-bottom:1px solid var(--border);position:relative;line-height:1.5}
+.pp-crit li::before{content:'';position:absolute;left:0;top:1.3rem;width:8px;height:8px;background:var(--red)}
+.pp-section-label{max-width:1500px;margin:0 auto;padding:2rem 2.5rem;border-top:1px solid var(--border)}
+.pp-section-label span{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray)}
+.pp-process{max-width:1500px;margin:0 auto;padding:1rem 2.5rem 4rem}
+.proc-row{display:grid;grid-template-columns:1.3fr 1fr;gap:4rem;align-items:center;margin-bottom:4rem}
+.proc-row-rev{grid-template-columns:1fr 1.3fr}
+.proc-row-rev .proc-img{order:2} .proc-row-rev .proc-text{order:1}
+.proc-img{height:440px;background-size:cover;background-position:center;background-color:var(--light)}
+/* Exploded assembly process step: full-width, taller, contain (no crop), white bg */
+.proc-row-exploded{display:block;margin-bottom:4rem}
+.proc-row-exploded .proc-text{max-width:680px;margin:0 auto 2rem;text-align:center}
+.proc-row-exploded .proc-img{height:auto;aspect-ratio:auto;background:none;display:flex;align-items:center;justify-content:center;padding:2rem;background-color:#fff}
+.proc-row-exploded .proc-img img{max-width:100%;max-height:760px;width:auto;height:auto;display:block}
+.proc-step{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:1rem}
+.proc-text h4{font-size:clamp(1.5rem,2.5vw,2rem);font-weight:800;letter-spacing:-.02em;margin-bottom:1rem;line-height:1.1}
+.proc-text p{font-size:15px;line-height:1.75;color:#555}
+.pp-section-label.dark{background:var(--black);max-width:none;border-top:none}
+.pp-section-label.dark span{color:rgba(255,255,255,.5)}
+.pp-section-label.dark>span{display:block;max-width:1500px;margin:0 auto}
+.pp-final{background:var(--black);padding:3rem 2.5rem 5rem}
+.pp-final{max-width:none;display:grid;grid-template-columns:repeat(2,1fr);gap:3px;max-width:1500px;margin:0 auto}
+.fin-item{margin:0}
+.fin-item.fin-big{grid-column:1 / -1}
+.fin-img{background-size:cover;background-position:center;height:340px;background-color:#1a1a1a}
+.fin-big .fin-img{height:560px}
+/* Exploded assembly in final gallery: full row, white background, image contained (no crop) */
+.fin-exploded{grid-column:1 / -1}
+.fin-exploded .fin-img{height:auto;background:#fff;display:flex;align-items:center;justify-content:center;padding:2.5rem;background-image:none!important}
+.fin-exploded .fin-img img{max-width:100%;max-height:780px;width:auto;height:auto;display:block}
+.fin-exploded figcaption{color:rgba(255,255,255,.6);text-align:center;padding-top:1rem}
+.fin-item figcaption{font-size:12px;color:rgba(255,255,255,.45);padding:1rem .25rem;line-height:1.5}
+.pp-next{position:relative;display:block;height:300px;overflow:hidden;cursor:pointer;background:var(--black)}
+.pp-next-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.35;transition:opacity .4s,transform .6s}
+.pp-next:hover .pp-next-bg{opacity:.55;transform:scale(1.04)}
+.pp-next-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem}
+.pp-next-label{font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.pp-next-name{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;letter-spacing:-.04em;color:#fff}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes slowzoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+
+@media(max-width:900px){
+  body{cursor:auto} .cursor{display:none}
+  nav{padding:0 1.25rem;height:56px} .nav-links{display:none}
+  #hero{padding:0 1.25rem 3rem} .hero-bottom{flex-direction:column;align-items:flex-start;gap:2rem} .hero-actions{align-items:flex-start}
+  .stats-bar{grid-template-columns:1fr 1fr} .stat-cell{padding:1.5rem 1.25rem}
+  .project-hero{height:auto;min-height:460px} .project-hero-content{flex-direction:column;align-items:flex-start;gap:1.5rem;padding:2rem 1.25rem}
+  .project-hero-right{align-items:flex-start;max-width:100%} .proj-hero-desc{text-align:left}
+  .project-grid{grid-template-columns:1fr} .project-card-visual{height:280px}
+  .project-card>div[style*=grid]{grid-template-columns:1fr!important}
+  .about-inner{grid-template-columns:1fr;gap:3rem;padding:4rem 1.25rem}
+  .skills-inner{padding:4rem 1.25rem} .skills-top{flex-direction:column;align-items:flex-start} .skills-sub{text-align:left}
+  .skills-grid{grid-template-columns:1fr} .skill-col{padding:1.5rem 0!important;border-right:none!important;border-bottom:1px solid #1F1F1F}
+  #contact-cta{padding:5rem 1.25rem} .cta-inner{flex-direction:column;align-items:flex-start;gap:2.5rem} .cta-right{align-items:flex-start}
+  .footer-inner{flex-direction:column;gap:1rem;align-items:flex-start}
+  .pp-nav{padding:0 1.25rem} .pp-nav-title{display:none}
+  .pp-hero-content{padding:2.5rem 1.25rem}
+  .pp-overview{grid-template-columns:1fr;gap:3rem;padding:3.5rem 1.25rem}
+  .pp-process{padding:1rem 1.25rem 3rem}
+  .proc-row,.proc-row-rev{grid-template-columns:1fr;gap:1.5rem;margin-bottom:3rem}
+  .proc-row-rev .proc-img{order:1} .proc-row-rev .proc-text{order:2}
+  .proc-img{height:280px}
+  .proc-row-exploded .proc-img{height:auto;padding:1rem}
+  .proc-row-exploded .proc-img img{max-height:500px}
+  .fin-exploded .fin-img{padding:1rem}
+  .fin-exploded .fin-img img{max-height:520px}
+  .pp-final{grid-template-columns:1fr;padding:2rem 1.25rem 4rem} .fin-big .fin-img{height:340px}
+  .pp-section-label{padding:2rem 1.25rem}
+  #contact-modal .cm-box{padding:2rem 1.5rem}
+}
+
+/* ===== CONTACT MODAL ===== */
+#contact-modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;visibility:hidden;transition:opacity .3s}
+#contact-modal.open{opacity:1;visibility:visible}
+.cm-backdrop{position:absolute;inset:0;background:rgba(8,8,8,.78);backdrop-filter:blur(6px);cursor:pointer}
+.cm-box{position:relative;z-index:2;background:#fff;width:100%;max-width:460px;padding:2.75rem 2.5rem;transform:translateY(16px) scale(.98);transition:transform .35s cubic-bezier(.16,1,.3,1);max-height:92vh;overflow-y:auto}
+#contact-modal.open .cm-box{transform:translateY(0) scale(1)}
+.cm-close{position:absolute;top:1.1rem;right:1.25rem;width:30px;height:30px;border:none;background:transparent;font-size:24px;line-height:1;color:var(--gray);cursor:pointer;transition:color .2s}
+.cm-close:hover{color:var(--black)}
+.cm-eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem}
+.cm-title{font-size:2rem;font-weight:800;letter-spacing:-.035em;line-height:1;margin-bottom:.6rem}
+.cm-sub{font-size:13px;color:var(--gray);line-height:1.6;margin-bottom:1.75rem}
+.cm-field{margin-bottom:1.25rem}
+.cm-label{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--black);margin-bottom:.55rem}
+.cm-input,.cm-textarea{width:100%;border:1.5px solid var(--border);background:var(--light);padding:13px 14px;font-family:var(--font);font-size:14px;color:var(--black);transition:border-color .2s,background .2s;outline:none;border-radius:0}
+.cm-input:focus,.cm-textarea:focus{border-color:var(--black);background:#fff}
+.cm-textarea{resize:none;min-height:96px;line-height:1.55}
+.cm-input.cm-error,.cm-textarea.cm-error{border-color:var(--red)}
+.cm-counter{text-align:right;font-size:11px;font-weight:500;color:var(--gray);margin-top:.4rem;font-variant-numeric:tabular-nums}
+.cm-counter.cm-max{color:var(--red)}
+.cm-errmsg{font-size:12px;color:var(--red);margin-top:.4rem;min-height:1em;font-weight:500}
+.cm-submit{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--black);color:#fff;font-size:14px;font-weight:800;letter-spacing:.04em;padding:16px;border:none;cursor:pointer;text-transform:uppercase;transition:all .25s;margin-top:.5rem}
+.cm-submit:hover{background:var(--red);gap:.85rem}
+.cm-foot{font-size:11px;color:var(--gray);text-align:center;margin-top:1.1rem;line-height:1.5}
+.cm-foot a{color:var(--black);text-decoration:underline}
+</style></head><body>
+
+<div class="cursor" id="cursor"></div>
+
+<div id="main">
+<nav id="nav">
+  <a class="nav-logo" data-top>Mayank Thakur</a>
+  <div class="nav-links"><a href="#about">About</a><a href="#work">Work</a><a href="#skills">Skills</a></div>
+  <a href="#contact-cta" class="nav-cta">Hire Me</a>
+</nav>
+
+<section id="hero"><div class="hero-bg"></div><div class="hero-content">
+  <p class="hero-eyebrow">Industrial Designer &nbsp;·&nbsp; Philadelphia, PA &nbsp;·&nbsp; 2026</p>
+  <h1 class="hero-title"><span>Design</span><span class="italic">you can</span><span>hold.</span></h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">Architect turned industrial designer. <strong>Three years, 20+ projects</strong> — from furniture to inclusive tech to everyday objects.</p>
+    <div class="hero-actions"><a href="#work" class="btn-primary">View Work &nbsp;↓</a><a href="#about" class="btn-secondary">About me →</a></div>
+  </div></div></section>
+
+<div class="marquee-wrap"><div class="marquee-track"><span class="marquee-item">Furniture Design ·</span><span class="marquee-item">Inclusive Design ·</span><span class="marquee-item">Ergonomics ·</span><span class="marquee-item">3D Printing ·</span><span class="marquee-item">Prototyping ·</span><span class="marquee-item">DFM ·</span><span class="marquee-item">SolidWorks ·</span><span class="marquee-item">Rhino 3D ·</span><span class="marquee-item">User Research ·</span><span class="marquee-item">Furniture Design ·</span><span class="marquee-item">Inclusive Design ·</span><span class="marquee-item">Ergonomics ·</span><span class="marquee-item">3D Printing ·</span><span class="marquee-item">Prototyping ·</span><span class="marquee-item">DFM ·</span><span class="marquee-item">SolidWorks ·</span><span class="marquee-item">Rhino 3D ·</span><span class="marquee-item">User Research ·</span></div></div>
+
+<div class="stats-bar">
+  <div class="stat-cell"><span class="stat-number">20+</span><span class="stat-label">Projects Completed</span></div>
+  <div class="stat-cell"><span class="stat-number">3</span><span class="stat-label">Years of Practice</span></div>
+  <div class="stat-cell"><span class="stat-number">2</span><span class="stat-label">Disciplines Mastered</span></div>
+  <div class="stat-cell"><span class="stat-number">5</span><span class="stat-label">Featured Projects</span></div>
+</div>
+
+<section id="work" style="background:var(--light)">
+  <div class="section-header"><span class="section-eyebrow">Selected Work</span><span class="section-eyebrow">Tap any project →</span></div>
+  
+  <div class="project-hero" data-goto="32x32">
+    <div class="project-hero-bg" style="background-image:url(images/hero_32x32.jpg)"></div>
+    <div class="project-hero-overlay"></div>
+    <div class="project-hero-content">
+      <div><div class="proj-num">01 / 05</div><h2 class="proj-hero-name">32<em>×</em>32</h2><div class="proj-hero-tag">Furniture Design · Prototyping</div></div>
+      <div class="project-hero-right"><p class="proj-hero-desc">Complexity revealed through simplicity. A furniture line built entirely from 32×32mm wooden sections with domino joinery.</p><span class="btn-outline-white">View Project →</span></div>
+    </div>
+  </div>
+  <div class="project-grid">
+    <div class="project-card" data-goto="drivedeck">
+      <div class="project-card-visual" style="background-image:url(images/card_drivedeck.jpg)"></div>
+      <div class="project-card-info"><div class="project-card-top"><span class="project-card-num">02 / 05</span><span class="project-card-tag">Inclusive Design</span></div><h3 class="project-card-name">DriveDeck</h3><p class="project-card-line">Adaptive bumper car controls for children with motor disabilities. Built with Easter Seals of SE Pennsylvania.</p><span class="project-card-cta">View Project →</span></div>
+    </div>
+    <div class="project-card" data-goto="pentel">
+      <div class="project-card-visual" style="background-image:url(images/card_pentel.jpg)"></div>
+      <div class="project-card-info"><div class="project-card-top"><span class="project-card-num">03 / 05</span><span class="project-card-tag">Ergonomics</span></div><h3 class="project-card-name">Pentel Nomics</h3><p class="project-card-line">Unconventional ergonomic pen redesign. The final "Omega" variant was selected by educators in user validation.</p><span class="project-card-cta">View Project →</span></div>
+    </div>
+  </div>
+  <div class="project-hero" data-goto="pressur">
+    <div class="project-hero-bg" style="background-image:url(images/hero_pressur.jpg)"></div>
+    <div class="project-hero-overlay"></div>
+    <div class="project-hero-content">
+      <div><div class="proj-num">04 / 05</div><h2 class="proj-hero-name">Pressur</h2><div class="proj-hero-tag">Industrial Design · DFM</div></div>
+      <div class="project-hero-right"><p class="proj-hero-desc">Tire inflator reinvented for the road. Injection-moldable, saddle-mounted, with rider visibility built in.</p><span class="btn-outline-white">View Project →</span></div>
+    </div>
+  </div>
+  <div class="project-grid" style="grid-template-columns:1fr">
+    <div class="project-card" data-goto="eventide" style="display:block">
+      <div style="display:grid;grid-template-columns:1fr 1fr">
+        <div class="project-card-visual" style="height:440px;background-image:url(images/card_eventide.jpg)"></div>
+        <div class="project-card-info" style="padding:3.5rem;justify-content:center"><div class="project-card-top"><span class="project-card-num">05 / 05</span><span class="project-card-tag">3D Printing · Electronics</span></div><h3 class="project-card-name" style="font-size:2.6rem;margin-bottom:1rem;line-height:1">Eventide<br>Ambient Light</h3><p class="project-card-line" style="font-size:14px;margin-bottom:1.5rem">Snap-fit enclosure for Adafruit Circuit Playground. No screws. No glue. A custom light pipe channels NeoPixel glow into ambient light.</p><span class="project-card-cta">View Project →</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about"><div class="about-inner">
+  <div class="about-left"><div class="about-eyebrow">About</div>
+    <h2 class="about-heading">Architect.<br><em>Turned designer.</em><br>Always builder.</h2>
+    <p class="about-body">Three years and 20+ architecture projects before making the switch. That background means I think at scale, coordinate across disciplines, and design for people who actually live inside the things I make.</p>
+    <p class="about-body">User needs aren't a checkbox — they're the starting point. Each project gets better because the last one taught me something.</p>
+    <a href="#" data-contact class="about-cta">Get in Touch →</a></div>
+  <div class="about-right">
+    <div class="tl-item"><div class="tl-year">2016–21</div><div><div class="tl-org">Delhi Technical Campus</div><div class="tl-role">B.Arch — Bachelor of Architecture</div></div></div>
+    <div class="tl-item"><div class="tl-year">2021</div><div><div class="tl-org">Meroform India Pvt. Ltd.</div><div class="tl-role">Junior Architect</div></div></div>
+    <div class="tl-item"><div class="tl-year">2022–24</div><div><div class="tl-org">Intec Infra Technologies</div><div class="tl-role">Architect</div></div></div>
+    <div class="tl-item"><div class="tl-year">2024–26</div><div><div class="tl-org">Thomas Jefferson University</div><div class="tl-role">M.S. Industrial Design</div></div></div>
+  </div></div></section>
+
+<section id="skills"><div class="skills-inner">
+  <div class="skills-top"><h2 class="skills-heading">Built to<br><em>make things.</em></h2>
+    <p class="skills-sub">From idea to prototype — every tool, every process, in service of the object.</p></div>
+  <div class="skills-grid">
+    <div class="skill-col"><div class="skill-col-label">Design Process</div><div class="skill-tags"><span class="skill-chip">User Research</span><span class="skill-chip">Ideation</span><span class="skill-chip">Prototyping</span><span class="skill-chip">User Testing</span><span class="skill-chip">Ergonomics</span><span class="skill-chip">Inclusive Design</span><span class="skill-chip">Design for Mfg.</span></div></div>
+    <div class="skill-col"><div class="skill-col-label">Software</div><div class="skill-tags"><span class="skill-chip">SolidWorks</span><span class="skill-chip">Rhino 3D</span><span class="skill-chip">KeyShot</span><span class="skill-chip">Adobe Suite</span><span class="skill-chip">Figma</span><span class="skill-chip">AutoCAD</span></div></div>
+    <div class="skill-col"><div class="skill-col-label">Making</div><div class="skill-tags"><span class="skill-chip">3D Printing (FDM)</span><span class="skill-chip">Woodworking</span><span class="skill-chip">Laser Cutting</span><span class="skill-chip">Hand Mockups</span><span class="skill-chip">Electronics</span><span class="skill-chip">Inj. Molding</span></div></div>
+  </div></div></section>
+
+<section id="contact-cta"><div class="cta-inner">
+  <div class="cta-left"><div class="cta-eyebrow">Let's work together</div><h2 class="cta-heading">Ready to<br>build <em>something</em><br>real?</h2></div>
+  <div class="cta-right"><a href="#" data-contact class="btn-cta-main">Get in Touch →</a><a href="#" class="btn-cta-secondary">Download PDF Portfolio ↓</a></div>
+</div></section>
+
+<footer><div class="footer-inner">
+  <div class="footer-logo">Mayank Thakur</div>
+  <div class="footer-links"><a href="https://www.linkedin.com/in/mayank-thakur-626a4a12b/" target="_blank" rel="noopener">LinkedIn</a><a href="#">Behance</a><a href="mailto:tmayank2597@gmail.com">Email</a></div>
+  <div class="footer-copy">© 2026 · Industrial Designer · Philadelphia, PA</div>
+</div></footer>
+</div>
+
+<div id="project-root"><div class="project-page" id="proj-32x32">
+  <div class="pp-nav">
+    <a class="pp-back" data-back>← All Work</a>
+    <span class="pp-nav-title">32×32</span>
+    <a href="#contact-cta" data-close class="pp-nav-cta">Hire Me</a>
+  </div>
+  <div class="pp-hero">
+    <div class="pp-hero-bg" style="background-image:url(images/hero_32x32.jpg)"></div>
+    <div class="pp-hero-overlay"></div>
+    <div class="pp-hero-content">
+      <div class="pp-num">Project 01 / 05</div>
+      <h1 class="pp-title">32<em>×</em>32</h1>
+      <div class="pp-tag">Furniture Design · Prototyping</div>
+    </div>
+  </div>
+  <div class="pp-overview">
+    <div class="pp-ov-left">
+      <div class="pp-tagline">Simplicity that reveals complexity</div>
+      <p class="pp-desc">A line of furniture that explores complex, overlapping patterns through simple joinery — echoing the fundamental archetypes of geometry. Every piece is built from a single 32×32×1040mm wooden section, using domino joinery to generate unexpected visual richness from the strictest of constraints.</p>
+    </div>
+    <div class="pp-ov-right">
+      <div class="pp-crit-label">Design Brief</div>
+      <ul class="pp-crit"><li>Design a complete line of furniture</li><li>Only 32×32×1040mm wooden sections for construction</li><li>Must be easy to manufacture</li><li>Joints made exclusively with domino joinery</li><li>Design language translates across every piece</li><li>Build one full 1:1 scale prototype</li></ul>
+    </div>
+  </div>
+  <div class="pp-section-label"><span>The Process</span></div>
+  <div class="pp-process"><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/p32_joinery.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 01</span><h4>Joinery Study</h4><p>It began with the joint. Loose studies in wood explored how simple lap and butt joints could overlap and interlock to suggest larger structures.</p></div>
+        </div><div class="proc-row proc-row-rev">
+          <div class="proc-img" style="background-image:url(images/p32_abstract.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 02</span><h4>Abstract Structure</h4><p>Those joinery studies were scaled into abstract structures — testing how a repeating language of overlapping members could stand, support, and define space.</p></div>
+        </div><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/p32_sidemodel.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 03</span><h4>Scale Models</h4><p>The vocabulary was translated across the whole family: side table, coffee table, sofa and a partition bookshelf, each at 1:5 scale to validate the shared language.</p></div>
+        </div><div class="proc-row proc-row-rev">
+          <div class="proc-img" style="background-image:url(images/p32_domino.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 04</span><h4>Cutting Joints</h4><p>For the 1:1 build, a domino joiner cut each mortise by hand — the only joining method allowed by the brief.</p></div>
+        </div><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/p32_sanding.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 05</span><h4>Finishing</h4><p>Every member was sanded and prepped before the finish coat, keeping the raw 32mm section honest and tactile.</p></div>
+        </div><div class="proc-row proc-row-rev">
+          <div class="proc-img" style="background-image:url(images/p32_assembly.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 06</span><h4>Pre-Final Assembly</h4><p>A dry assembly checked fit and tolerance across the overlapping knot details before final glue-up.</p></div>
+        </div></div>
+  <div class="pp-section-label dark"><span>Final Design</span></div>
+  <div class="pp-final"><figure class="fin-item fin-big"><div class="fin-img" style="background-image:url(images/hero_32x32.jpg)"></div><figcaption>The complete furniture line — sofa, coffee table and side table sharing one joinery language.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/card_32x32.jpg)"></div><figcaption>The 1:1 scale coffee table prototype with glass top, revealing the overlapping knot structure beneath.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/p32_render_side.jpg)"></div><figcaption>Side table render showing how the language scales down.</figcaption></figure></div>
+  <a class="pp-next" data-goto="drivedeck">
+    <div class="pp-next-inner">
+      <span class="pp-next-label">Next Project →</span>
+      <span class="pp-next-name">DriveDeck</span>
+    </div>
+    <div class="pp-next-bg" style="background-image:url(images/hero_drivedeck.jpg)"></div>
+  </a>
+</div><div class="project-page" id="proj-drivedeck">
+  <div class="pp-nav">
+    <a class="pp-back" data-back>← All Work</a>
+    <span class="pp-nav-title">DriveDeck</span>
+    <a href="#contact-cta" data-close class="pp-nav-cta">Hire Me</a>
+  </div>
+  <div class="pp-hero">
+    <div class="pp-hero-bg" style="background-image:url(images/hero_drivedeck.jpg)"></div>
+    <div class="pp-hero-overlay"></div>
+    <div class="pp-hero-content">
+      <div class="pp-num">Project 02 / 05</div>
+      <h1 class="pp-title">Drive<em>Deck</em></h1>
+      <div class="pp-tag">Inclusive Design · Healthcare Collaboration</div>
+    </div>
+  </div>
+  <div class="pp-overview">
+    <div class="pp-ov-left">
+      <div class="pp-tagline">All hands on deck</div>
+      <p class="pp-desc">Developed in collaboration with Easter Seals of Southeastern Pennsylvania. A physical therapist identified the need for an alternative control system for bumper cars — one that accommodates children with physical and motor disabilities. The stock joystick is challenging for children with limited fine motor control, so DriveDeck replaces it with large, easy-to-press buttons, giving more children the chance to participate independently.</p>
+    </div>
+    <div class="pp-ov-right">
+      <div class="pp-crit-label">Design Brief</div>
+      <ul class="pp-crit"><li>Tray mounts and unmounts with minimal effort</li><li>Tray must never hinder the user</li><li>Any adjustment made without special tools</li><li>Light yet sturdy enough to support a child’s forearms</li><li>Controls simple enough to engage easily</li></ul>
+    </div>
+  </div>
+  <div class="pp-section-label"><span>The Process</span></div>
+  <div class="pp-process"><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/dd_sketch_overall.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 01</span><h4>Initial Ideation</h4><p>First sketches worked out the overall articulation: a tray that hinges and locks, a three-part assembly, and the knob and pivot that hold the whole thing in place.</p></div>
+        </div><div class="proc-row proc-row-rev">
+          <div class="proc-img" style="background-image:url(images/dd_sketch_r3.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 02</span><h4>Refining the Tray</h4><p>A direct comparison — thick-and-bulky vs. light-thin-and-strong — led to an internally ribbed tray that stayed rigid without the mass.</p></div>
+        </div><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/dd_sketch_clamp.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 03</span><h4>Clamp & Mount Versions</h4><p>Four mount versions and two clamp variants were studied side-by-side, plus the knob, to find the combination that adjusted easily without tools.</p></div>
+        </div><div class="proc-row proc-row-rev">
+          <div class="proc-img" style="background-image:url(images/dd_parts.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 04</span><h4>Iterating the Hardware</h4><p>Every articulation part — the pipe mount, the tightening knob, the clamps — went through multiple printed iterations to find the right balance of strength, fit and adjustability.</p></div>
+        </div><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/dd_mounting.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 05</span><h4>Mounting on the Car</h4><p>Each iteration was fitted to the actual bumper car on the bench, checking clearance, reach and the act of actually engaging the buttons.</p></div>
+        </div></div>
+  <div class="pp-section-label dark"><span>Final Design</span></div>
+  <div class="pp-final"><figure class="fin-item fin-big"><div class="fin-img" style="background-image:url(images/hero_drivedeck.jpg)"></div><figcaption>The final DriveDeck mounted on the bumper car, with large dual buttons for forward and reverse.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/card_drivedeck.jpg)"></div><figcaption>Three-quarter view: both decks deployed and ready to drive.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/dd_final_side.jpg)"></div><figcaption>Side profile, showing the tray angle tuned for comfortable forearm rest.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/dd_final_back.jpg)"></div><figcaption>From behind: the buttons sit cleanly above the car’s factory controls without hindering access.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/dd_final_engaged.jpg)"></div><figcaption>Detail of the left deck and clamp, deployed in working position.</figcaption></figure></div>
+  <a class="pp-next" data-goto="pentel">
+    <div class="pp-next-inner">
+      <span class="pp-next-label">Next Project →</span>
+      <span class="pp-next-name">Pentel Nomics</span>
+    </div>
+    <div class="pp-next-bg" style="background-image:url(images/hero_pentel.jpg)"></div>
+  </a>
+</div><div class="project-page" id="proj-pentel">
+  <div class="pp-nav">
+    <a class="pp-back" data-back>← All Work</a>
+    <span class="pp-nav-title">Pentel Nomics</span>
+    <a href="#contact-cta" data-close class="pp-nav-cta">Hire Me</a>
+  </div>
+  <div class="pp-hero">
+    <div class="pp-hero-bg" style="background-image:url(images/hero_pentel.jpg)"></div>
+    <div class="pp-hero-overlay"></div>
+    <div class="pp-hero-content">
+      <div class="pp-num">Project 03 / 05</div>
+      <h1 class="pp-title">Pentel<em> Nomics</em></h1>
+      <div class="pp-tag">Product Design · Ergonomics</div>
+    </div>
+  </div>
+  <div class="pp-overview">
+    <div class="pp-ov-left">
+      <div class="pp-tagline">Getting hands on</div>
+      <p class="pp-desc">A complete ergonomic redesign of the Pentel pen — pivoting away from the traditional cylindrical form toward an unconventional shape that is easier to hold and support. The goal was a better writing experience, a nib-retracting mechanism, and a premium presence, all designed with real manufacturing processes in mind.</p>
+    </div>
+    <div class="pp-ov-right">
+      <div class="pp-crit-label">Design Brief</div>
+      <ul class="pp-crit"><li>Ergonomic pen with a nib-retracting mechanism</li><li>Redesign for a noticeably better writing experience</li><li>Stand out in a premium way</li><li>Designed with manufacturing processes in mind</li></ul>
+    </div>
+  </div>
+  <div class="pp-section-label"><span>The Process</span></div>
+  <div class="pp-process"><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/pn_foam_hand.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 01</span><h4>Ergonomic Form Study</h4><p>Foam models tested unconventional grip geometries in the hand, setting a baseline before refinement.</p></div>
+        </div><div class="proc-row proc-row-rev">
+          <div class="proc-img" style="background-image:url(images/pn_hifi.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 02</span><h4>High-Fidelity Mock-ups</h4><p>Four contenders — Alpha, Beta, Gamma and Omega — were built at high fidelity for structured user validation.</p></div>
+        </div><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/pn_grip_refine.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 03</span><h4>Grip Refinement</h4><p>A dedicated series of printed grip sections refined exactly how the fingers seat against the body.</p></div>
+        </div><div class="proc-row proc-row-rev">
+          <div class="proc-img" style="background-image:url(images/pn_educator.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 04</span><h4>User Validation</h4><p>Educators tested each candidate in real writing tasks. Omega won — they liked the weight in the grip and how its contours guide finger placement and weight distribution.</p></div>
+        </div><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/pn_sealing.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 05</span><h4>Internal Mechanism</h4><p>A cross-section of the resolved design, working out the nib-retracting mechanism and how every component seats inside the slim body.</p></div>
+        </div></div>
+  <div class="pp-section-label dark"><span>Final Design</span></div>
+  <div class="pp-final"><figure class="fin-item fin-big"><div class="fin-img" style="background-image:url(images/hero_pentel.jpg)"></div><figcaption>The final Pentel Nomics family — matte black, transparent demonstrator, and iridescent finish.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/card_pentel.jpg)"></div><figcaption>The transparent demonstrator revealing the internal retracting mechanism.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/pn_iridescent.jpg)"></div><figcaption>The demonstrator lit from within, showing the light path through the body.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/pn_grip_refine.jpg)"></div><figcaption>The progression of grip-refinement prototypes that led to the final Omega form.</figcaption></figure></div>
+  <a class="pp-next" data-goto="pressur">
+    <div class="pp-next-inner">
+      <span class="pp-next-label">Next Project →</span>
+      <span class="pp-next-name">Pressur</span>
+    </div>
+    <div class="pp-next-bg" style="background-image:url(images/hero_pressur.jpg)"></div>
+  </a>
+</div><div class="project-page" id="proj-pressur">
+  <div class="pp-nav">
+    <a class="pp-back" data-back>← All Work</a>
+    <span class="pp-nav-title">Pressur</span>
+    <a href="#contact-cta" data-close class="pp-nav-cta">Hire Me</a>
+  </div>
+  <div class="pp-hero">
+    <div class="pp-hero-bg" style="background-image:url(images/hero_pressur.jpg)"></div>
+    <div class="pp-hero-overlay"></div>
+    <div class="pp-hero-content">
+      <div class="pp-num">Project 04 / 05</div>
+      <h1 class="pp-title">Pressur</h1>
+      <div class="pp-tag">Industrial Design · Design for Manufacturing</div>
+    </div>
+  </div>
+  <div class="pp-overview">
+    <div class="pp-ov-left">
+      <div class="pp-tagline">Inflation, reinvented for the road</div>
+      <p class="pp-desc">A redesign of the external enclosure for a portable tire inflator — keeping all the same internal components while adding new functionality and designing for injection molding and assembly. The key move: a mount that attaches the inflator directly under a bike saddle, with rider-visibility features built into the form.</p>
+    </div>
+    <div class="pp-ov-right">
+      <div class="pp-crit-label">Design Brief</div>
+      <ul class="pp-crit"><li>Redesign the enclosure using the same internal components</li><li>Design must be injection moldable</li><li>Can be mounted on a bike</li><li>Add more visibility for the rider</li></ul>
+    </div>
+  </div>
+  <div class="pp-section-label"><span>The Process</span></div>
+  <div class="pp-process"><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/pr_internals.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 01</span><h4>Carrying Over the Internals</h4><p>The motor, battery, pump, fan and pipe were carried over unchanged from the original product — the new shell had to package all of them while staying fully injection moldable.</p></div>
+        </div><div class="proc-row-exploded">
+          <div class="proc-text"><span class="proc-step">Step 02</span><h4>Designed for Assembly</h4><p>An exploded view of the resolved design: a two-part molded shell closes over the internals and PCB, located by screw bosses and locating ribs, with the LED board seated at the rear.</p></div>
+          <div class="proc-img"><img src="images/pr_exploded.jpg" alt="Designed for Assembly"></div>
+        </div><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/pr_three.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 03</span><h4>Visibility, Every Angle</h4><p>Reflective tape runs along both sides while four red LEDs sit at the rear — so the rider stays visible from behind and from the side. Vent holes for the fan double as a texture motif.</p></div>
+        </div><div class="proc-row proc-row-rev">
+          <div class="proc-img" style="background-image:url(images/pr_saddle_photos.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 04</span><h4>Mounted in Context</h4><p>The clamp grips the saddle rails directly, tucking the inflator neatly beneath the seat where it stays out of the way until needed.</p></div>
+        </div></div>
+  <div class="pp-section-label dark"><span>Final Design</span></div>
+  <div class="pp-final"><figure class="fin-item fin-big"><div class="fin-img" style="background-image:url(images/hero_pressur.jpg)"></div><figcaption>The final Pressur mounted under the saddle, rear LEDs lit for visibility on the road.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/pr_three.jpg)"></div><figcaption>Three views of the finished enclosure — rear lights, side reflective tape, and the clip mount.</figcaption></figure><figure class="fin-item fin-exploded"><div class="fin-img"><img src="images/pr_exploded.jpg" alt=""></div><figcaption>Exploded view showing the injection-moldable shell closing over the carried-over internals.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/pr_internals.jpg)"></div><figcaption>The internal layout: motor, battery, pump, fan and control PCB packaged into the new form.</figcaption></figure></div>
+  <a class="pp-next" data-goto="eventide">
+    <div class="pp-next-inner">
+      <span class="pp-next-label">Next Project →</span>
+      <span class="pp-next-name">Eventide Ambient Light</span>
+    </div>
+    <div class="pp-next-bg" style="background-image:url(images/hero_eventide.jpg)"></div>
+  </a>
+</div><div class="project-page" id="proj-eventide">
+  <div class="pp-nav">
+    <a class="pp-back" data-back>← All Work</a>
+    <span class="pp-nav-title">Eventide Ambient Light</span>
+    <a href="#contact-cta" data-close class="pp-nav-cta">Hire Me</a>
+  </div>
+  <div class="pp-hero">
+    <div class="pp-hero-bg" style="background-image:url(images/hero_eventide.jpg)"></div>
+    <div class="pp-hero-overlay"></div>
+    <div class="pp-hero-content">
+      <div class="pp-num">Project 05 / 05</div>
+      <h1 class="pp-title">Eventide<em> Ambient Light</em></h1>
+      <div class="pp-tag">Product Design · 3D Printing · Electronics</div>
+    </div>
+  </div>
+  <div class="pp-overview">
+    <div class="pp-ov-left">
+      <div class="pp-tagline">Glow, contained</div>
+      <p class="pp-desc">An ambient light enclosure designed entirely around snap-fit assembly — no screws, no glue. It houses an Adafruit Circuit Playground, a lithium-ion battery, and a custom light pipe that channels the board’s NeoPixel LEDs into a soft ambient glow. Every decision was driven by the constraints of 3D printing and clean snap-fit geometry.</p>
+    </div>
+    <div class="pp-ov-right">
+      <div class="pp-crit-label">Design Brief</div>
+      <ul class="pp-crit"><li>Assembled entirely with snap-fits — no screws or glue</li><li>House an Adafruit Circuit Playground, battery and light pipe</li><li>Light pipe must channel the NeoPixel output</li><li>Designed around 3D-printing constraints</li></ul>
+    </div>
+  </div>
+  <div class="pp-section-label"><span>The Process</span></div>
+  <div class="pp-process"><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/ev_round1.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 01</span><h4>Form Development</h4><p>The housing took the silhouette of a starship — a wide saucer over a tapered body with two raised nacelles, each a natural vessel for a light element.</p></div>
+        </div><div class="proc-row-exploded">
+          <div class="proc-text"><span class="proc-step">Step 02</span><h4>Snap-Fit Assembly</h4><p>An exploded view of the resolved design: the Circuit Playground, battery and light pipe all locate into the lower body and are captured by the top shell’s snap features — no fasteners anywhere.</p></div>
+          <div class="proc-img"><img src="images/ev_exploded.jpg" alt="Snap-Fit Assembly"></div>
+        </div><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/ev_circuit.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 03</span><h4>Seating the Circuit Playground</h4><p>Looking straight into the saucer: the Adafruit board drops onto its standoffs with the ring of NeoPixels facing out, and the perimeter snap tabs lock the cover down over it.</p></div>
+        </div><div class="proc-row proc-row-rev">
+          <div class="proc-img" style="background-image:url(images/ev_assembly.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 04</span><h4>Channeling the Light</h4><p>A cutaway through the assembled body shows how the light pipe picks up the NeoPixel ring at the saucer and carries it down through the nacelles — the whole optical path resolved inside the snap-fit shell.</p></div>
+        </div><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/ev_final_lit.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Step 05</span><h4>Tuning the Light</h4><p>With the electronics seated, the NeoPixels drive the nacelles red and the central core blue — the light pipe carrying each color cleanly to its surface.</p></div>
+        </div></div>
+  <div class="pp-section-label dark"><span>Final Design</span></div>
+  <div class="pp-final"><figure class="fin-item fin-big"><div class="fin-img" style="background-image:url(images/hero_eventide.jpg)"></div><figcaption>The finished Eventide ambient light, nacelles glowing red against a cyan saucer.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/card_eventide.jpg)"></div><figcaption>The light staged on its halo platform — the signature ambient glow.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/ev_final_lit.jpg)"></div><figcaption>Head-on: red nacelles and a blue core, every channel lit by a single Circuit Playground.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/ev_dark.jpg)"></div><figcaption>The piece at rest within its ring, ambient and sculptural.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/ev_detail1.jpg)"></div><figcaption>Section through the lower body and nacelle, showing the internal structure and snap detail.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/ev_detail2.jpg)"></div><figcaption>Top-down into the saucer: the three light-pipe legs splay out from the central core to feed each channel.</figcaption></figure></div>
+  <a class="pp-next" data-goto="32x32">
+    <div class="pp-next-inner">
+      <span class="pp-next-label">Next Project →</span>
+      <span class="pp-next-name">32×32</span>
+    </div>
+    <div class="pp-next-bg" style="background-image:url(images/hero_32x32.jpg)"></div>
+  </a>
+</div></div>
+
+<div id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="cm-title">
+  <div class="cm-backdrop" data-cm-close></div>
+  <div class="cm-box">
+    <button class="cm-close" data-cm-close aria-label="Close">&times;</button>
+    <div class="cm-eyebrow">Get in Touch</div>
+    <h2 class="cm-title" id="cm-title">Let's talk.</h2>
+    <p class="cm-sub">Drop your email and a short note — it'll open in your mail app, ready to send.</p>
+    <div class="cm-field">
+      <label class="cm-label" for="cm-email">Your Email</label>
+      <input class="cm-input" id="cm-email" type="email" placeholder="you@example.com" autocomplete="email" maxlength="120">
+      <div class="cm-errmsg" id="cm-email-err"></div>
+    </div>
+    <div class="cm-field">
+      <label class="cm-label" for="cm-msg">Message</label>
+      <textarea class="cm-textarea" id="cm-msg" placeholder="What would you like to work on together?" maxlength="250"></textarea>
+      <div class="cm-counter" id="cm-counter">0 / 250</div>
+      <div class="cm-errmsg" id="cm-msg-err"></div>
+    </div>
+    <button class="cm-submit" id="cm-submit">Send Message &nbsp;→</button>
+    <p class="cm-foot">Prefer email? Reach me directly at <a href="mailto:tmayank2597@gmail.com">tmayank2597@gmail.com</a></p>
+  </div>
+</div>
+
+<script>
+const cursor=document.getElementById('cursor');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function loop(){cx+=(mx-cx)*.2;cy+=(my-cy)*.2;cursor.style.left=cx+'px';cursor.style.top=cy+'px';requestAnimationFrame(loop)})();
+function bindCursor(){document.querySelectorAll('a,button,[data-goto],[class*="card"],[class*="btn"],[data-back],[data-top]').forEach(el=>{if(el._cb)return;el._cb=1;el.addEventListener('mouseenter',()=>cursor.classList.add('expand'));el.addEventListener('mouseleave',()=>cursor.classList.remove('expand'));});}
+bindCursor();
+
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50),{passive:true});
+
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const d=parseInt(e.target.dataset.delay||0);setTimeout(()=>e.target.classList.add('visible'),d);obs.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.stat-cell').forEach((el,i)=>{el.dataset.delay=i*80;obs.observe(el)});
+document.querySelectorAll('.project-hero,.project-grid,.about-left,.about-right,.cta-left,.cta-right').forEach(el=>obs.observe(el));
+document.querySelectorAll('.skill-col').forEach((el,i)=>{el.dataset.delay=i*100;obs.observe(el)});
+
+// ===== ROUTING =====
+const root=document.getElementById('project-root');
+const pages=document.querySelectorAll('.project-page');
+function openProject(id){
+  pages.forEach(pg=>pg.classList.toggle('active',pg.id==='proj-'+id));
+  root.classList.add('open');
+  root.scrollTop=0;
+  document.body.style.overflow='hidden';
+  if(history.pushState)history.pushState({p:id},'','#'+id);
+}
+function closeProject(){
+  root.classList.remove('open');
+  document.body.style.overflow='';
+  setTimeout(()=>pages.forEach(pg=>pg.classList.remove('active')),400);
+}
+document.querySelectorAll('[data-goto]').forEach(el=>{
+  el.addEventListener('click',e=>{e.preventDefault();openProject(el.dataset.goto);});
+});
+document.querySelectorAll('[data-back]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();closeProject();if(history.pushState)history.pushState(null,'','#work');}));
+document.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();closeProject();setTimeout(()=>{location.hash='contact-cta';},420);}));
+document.querySelectorAll('[data-top]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();closeProject();window.scrollTo({top:0,behavior:'smooth'});}));
+window.addEventListener('popstate',e=>{if(e.state&&e.state.p)openProject(e.state.p);else closeProject();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&root.classList.contains('open'))closeProject();});
+// deep link on load
+if(location.hash){const id=location.hash.slice(1);if(document.getElementById('proj-'+id))openProject(id);}
+
+// ===== CONTACT MODAL =====
+const cm=document.getElementById('contact-modal');
+const cmEmail=document.getElementById('cm-email');
+const cmMsg=document.getElementById('cm-msg');
+const cmCounter=document.getElementById('cm-counter');
+const cmEmailErr=document.getElementById('cm-email-err');
+const cmMsgErr=document.getElementById('cm-msg-err');
+const RECIPIENT='tmayank2597@gmail.com';
+// To receive messages straight in your inbox: get a free key at https://web3forms.com
+// (enter tmayank2597@gmail.com, they email you an access key), then paste it below.
+// While this is empty, the form falls back to opening the visitor's mail app.
+const WEB3FORMS_KEY='';
+function openContact(){cm.classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>cmEmail.focus(),300);}
+function closeContact(){cm.classList.remove('open');if(!root.classList.contains('open'))document.body.style.overflow='';clearErrors();}
+function clearErrors(){cmEmail.classList.remove('cm-error');cmMsg.classList.remove('cm-error');cmEmailErr.textContent='';cmMsgErr.textContent='';}
+document.querySelectorAll('[data-contact]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openContact();}));
+document.querySelectorAll('[data-cm-close]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();closeContact();}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&cm.classList.contains('open'))closeContact();});
+// live char counter
+cmMsg.addEventListener('input',()=>{
+  const n=cmMsg.value.length;
+  cmCounter.textContent=n+' / 250';
+  cmCounter.classList.toggle('cm-max',n>=250);
+  if(cmMsg.value.trim()){cmMsg.classList.remove('cm-error');cmMsgErr.textContent='';}
+});
+cmEmail.addEventListener('input',()=>{if(cmEmail.value.trim()){cmEmail.classList.remove('cm-error');cmEmailErr.textContent='';}});
+// submit -> validate -> send via Web3Forms (if key set) else open mail client
+document.getElementById('cm-submit').addEventListener('click',async()=>{
+  clearErrors();
+  const email=cmEmail.value.trim();
+  const msg=cmMsg.value.trim();
+  let ok=true;
+  const emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRe.test(email)){cmEmail.classList.add('cm-error');cmEmailErr.textContent='Please enter a valid email address.';ok=false;}
+  if(!msg){cmMsg.classList.add('cm-error');cmMsgErr.textContent='Please add a short message.';ok=false;}
+  if(!ok)return;
+  const btn=document.getElementById('cm-submit');
+  const reset=()=>{cmEmail.value='';cmMsg.value='';cmCounter.textContent='0 / 250';cmCounter.classList.remove('cm-max');};
+  if(WEB3FORMS_KEY){
+    // Send directly to inbox via Web3Forms (no mail app needed)
+    btn.disabled=true;btn.textContent='Sending…';
+    try{
+      const res=await fetch('https://api.web3forms.com/submit',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          access_key:WEB3FORMS_KEY,
+          subject:'Portfolio enquiry from '+email,
+          from_name:'Portfolio Contact Form',
+          email:email,
+          replyto:email,
+          message:msg
+        })
+      });
+      const data=await res.json();
+      if(data.success){
+        btn.textContent='Message sent ✓';
+        setTimeout(()=>{btn.disabled=false;btn.innerHTML='Send Message &nbsp;→';closeContact();reset();},1600);
+      }else{throw new Error(data.message||'Failed');}
+    }catch(err){
+      btn.disabled=false;btn.innerHTML='Send Message &nbsp;→';
+      cmMsgErr.textContent='Could not send just now — please try again or email me directly.';
+    }
+  }else{
+    // Fallback: open the visitor's mail app, pre-filled
+    const subject=encodeURIComponent('Portfolio enquiry from '+email);
+    const body=encodeURIComponent(msg+'\n\n\u2014 '+email);
+    window.location.href='mailto:'+RECIPIENT+'?subject='+subject+'&body='+body;
+    btn.textContent='Opening your mail app…';
+    setTimeout(()=>{btn.innerHTML='Send Message &nbsp;→';closeContact();reset();},1400);
+  }
+});
+</script>
+</body></html>
