@@ -69,6 +69,7 @@ nav.scrolled .nav-cta{color:var(--black);border-color:var(--black)} nav.scrolled
 .proj-hero-desc{font-size:14px;line-height:1.7;color:rgba(255,255,255,.85);text-align:right;text-shadow:0 2px 12px rgba(0,0,0,.5)}
 .btn-outline-white{display:inline-flex;align-items:center;gap:.5rem;color:#fff;font-size:13px;font-weight:700;letter-spacing:.05em;padding:13px 26px;border:1.5px solid rgba(255,255,255,.5);text-transform:uppercase;transition:all .25s}
 .project-hero:hover .btn-outline-white{background:#fff;color:var(--black);border-color:#fff;gap:.9rem}
+.proj-flag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:var(--red);padding:5px 11px;margin-bottom:1rem}
 
 .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;padding-bottom:3px;opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
 .project-grid.visible{opacity:1;transform:translateY(0)}
@@ -197,6 +198,16 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
 .pp-next-label{font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6)}
 .pp-next-name{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;letter-spacing:-.04em;color:#fff}
 
+/* ===== SYSTEM ARCHITECTURE BAND (thesis) ===== */
+.pp-system-intro{max-width:1500px;margin:0 auto;padding:2.5rem 2.5rem 1rem}
+.pp-system-intro p{font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:800;letter-spacing:-.025em;line-height:1.2;max-width:980px}
+.pp-system-intro p em{font-style:italic;font-weight:300;color:var(--gray)}
+.pp-system{max-width:1500px;margin:0 auto;padding:2rem 2.5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:3px;background:var(--border)}
+.sys-cell{background:var(--light);padding:2.75rem 2.5rem;position:relative}
+.sys-num{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--red);margin-bottom:1.1rem;display:block}
+.sys-cell h4{font-size:clamp(1.3rem,2vw,1.7rem);font-weight:800;letter-spacing:-.02em;margin-bottom:.85rem;line-height:1.05}
+.sys-cell p{font-size:14px;line-height:1.7;color:#555}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes slowzoom{from{transform:scale(1.08)}to{transform:scale(1)}}
@@ -228,6 +239,8 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
   .fin-exploded .fin-img img{max-height:520px}
   .pp-final{grid-template-columns:1fr;padding:2rem 1.25rem 4rem} .fin-big .fin-img{height:340px}
   .pp-section-label{padding:2rem 1.25rem}
+  .pp-system{grid-template-columns:1fr;padding:1.5rem 1.25rem 3rem} .sys-cell{padding:2rem 1.5rem}
+  .pp-system-intro{padding:2rem 1.25rem .5rem}
   #contact-modal .cm-box{padding:2rem 1.5rem}
 }
 
@@ -274,41 +287,50 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
     <div class="hero-actions"><a href="#work" class="btn-primary">View Work &nbsp;↓</a><a href="Mayank-Thakur-Portfolio.pdf" download class="btn-secondary">Download Portfolio ↓</a><a href="#about" class="btn-secondary">About me →</a></div>
   </div></div></section>
 
-<div class="marquee-wrap"><div class="marquee-track"><span class="marquee-item">Furniture Design ·</span><span class="marquee-item">Inclusive Design ·</span><span class="marquee-item">Ergonomics ·</span><span class="marquee-item">3D Printing ·</span><span class="marquee-item">Prototyping ·</span><span class="marquee-item">DFM ·</span><span class="marquee-item">SolidWorks ·</span><span class="marquee-item">Rhino 3D ·</span><span class="marquee-item">User Research ·</span><span class="marquee-item">Furniture Design ·</span><span class="marquee-item">Inclusive Design ·</span><span class="marquee-item">Ergonomics ·</span><span class="marquee-item">3D Printing ·</span><span class="marquee-item">Prototyping ·</span><span class="marquee-item">DFM ·</span><span class="marquee-item">SolidWorks ·</span><span class="marquee-item">Rhino 3D ·</span><span class="marquee-item">User Research ·</span></div></div>
+<div class="marquee-wrap"><div class="marquee-track"><span class="marquee-item">Systems Design ·</span><span class="marquee-item">Furniture Design ·</span><span class="marquee-item">Inclusive Design ·</span><span class="marquee-item">Ergonomics ·</span><span class="marquee-item">3D Printing ·</span><span class="marquee-item">Prototyping ·</span><span class="marquee-item">DFM ·</span><span class="marquee-item">SolidWorks ·</span><span class="marquee-item">Rhino 3D ·</span><span class="marquee-item">User Research ·</span><span class="marquee-item">Systems Design ·</span><span class="marquee-item">Furniture Design ·</span><span class="marquee-item">Inclusive Design ·</span><span class="marquee-item">Ergonomics ·</span><span class="marquee-item">3D Printing ·</span><span class="marquee-item">Prototyping ·</span><span class="marquee-item">DFM ·</span><span class="marquee-item">SolidWorks ·</span><span class="marquee-item">Rhino 3D ·</span><span class="marquee-item">User Research ·</span></div></div>
 
 <div class="stats-bar">
   <div class="stat-cell"><span class="stat-number">20+</span><span class="stat-label">Projects Completed</span></div>
   <div class="stat-cell"><span class="stat-number">3</span><span class="stat-label">Years of Practice</span></div>
   <div class="stat-cell"><span class="stat-number">2</span><span class="stat-label">Disciplines Mastered</span></div>
-  <div class="stat-cell"><span class="stat-number">5</span><span class="stat-label">Featured Projects</span></div>
+  <div class="stat-cell"><span class="stat-number">6</span><span class="stat-label">Featured Projects</span></div>
 </div>
 
 <section id="work" style="background:var(--light)">
   <div class="section-header"><span class="section-eyebrow">Selected Work</span><span class="section-eyebrow">Tap any project →</span></div>
-  
+
+  <div class="project-hero" data-goto="starterspark">
+    <div class="project-hero-bg" style="background-image:url(images/hero_starterspark.jpg)"></div>
+    <div class="project-hero-overlay"></div>
+    <div class="project-hero-content">
+      <div><span class="proj-flag">M.S. Thesis</span><div class="proj-num">01 / 06</div><h2 class="proj-hero-name">Starter<em>Spark</em></h2><div class="proj-hero-tag">Systems Design · Inclusive STEM</div></div>
+      <div class="project-hero-right"><p class="proj-hero-desc">An electronics learning kit designed as a system — redesigned components, visual overlays, guided instructions and inventory-ready storage that work together so first-time builders succeed.</p><span class="btn-outline-white">View Project →</span></div>
+    </div>
+  </div>
+
   <div class="project-hero" data-goto="32x32">
     <div class="project-hero-bg" style="background-image:url(images/hero_32x32.jpg)"></div>
     <div class="project-hero-overlay"></div>
     <div class="project-hero-content">
-      <div><div class="proj-num">01 / 05</div><h2 class="proj-hero-name">32<em>×</em>32</h2><div class="proj-hero-tag">Furniture Design · Prototyping</div></div>
+      <div><div class="proj-num">02 / 06</div><h2 class="proj-hero-name">32<em>×</em>32</h2><div class="proj-hero-tag">Furniture Design · Prototyping</div></div>
       <div class="project-hero-right"><p class="proj-hero-desc">Complexity revealed through simplicity. A furniture line built entirely from 32×32mm wooden sections with domino joinery.</p><span class="btn-outline-white">View Project →</span></div>
     </div>
   </div>
   <div class="project-grid">
     <div class="project-card" data-goto="drivedeck">
       <div class="project-card-visual" style="background-image:url(images/card_drivedeck.jpg)"></div>
-      <div class="project-card-info"><div class="project-card-top"><span class="project-card-num">02 / 05</span><span class="project-card-tag">Inclusive Design</span></div><h3 class="project-card-name">DriveDeck</h3><p class="project-card-line">Adaptive bumper car controls for children with motor disabilities. Built with Easter Seals of SE Pennsylvania.</p><span class="project-card-cta">View Project →</span></div>
+      <div class="project-card-info"><div class="project-card-top"><span class="project-card-num">03 / 06</span><span class="project-card-tag">Inclusive Design</span></div><h3 class="project-card-name">DriveDeck</h3><p class="project-card-line">Adaptive bumper car controls for children with motor disabilities. Built with Easter Seals of SE Pennsylvania.</p><span class="project-card-cta">View Project →</span></div>
     </div>
     <div class="project-card" data-goto="pentel">
       <div class="project-card-visual" style="background-image:url(images/card_pentel.jpg)"></div>
-      <div class="project-card-info"><div class="project-card-top"><span class="project-card-num">03 / 05</span><span class="project-card-tag">Ergonomics</span></div><h3 class="project-card-name">Pentel Nomics</h3><p class="project-card-line">Unconventional ergonomic pen redesign. The final "Omega" variant was selected by educators in user validation.</p><span class="project-card-cta">View Project →</span></div>
+      <div class="project-card-info"><div class="project-card-top"><span class="project-card-num">04 / 06</span><span class="project-card-tag">Ergonomics</span></div><h3 class="project-card-name">Pentel Nomics</h3><p class="project-card-line">Unconventional ergonomic pen redesign. The final "Omega" variant was selected by educators in user validation.</p><span class="project-card-cta">View Project →</span></div>
     </div>
   </div>
   <div class="project-hero" data-goto="pressur">
     <div class="project-hero-bg" style="background-image:url(images/hero_pressur.jpg)"></div>
     <div class="project-hero-overlay"></div>
     <div class="project-hero-content">
-      <div><div class="proj-num">04 / 05</div><h2 class="proj-hero-name">Pressur</h2><div class="proj-hero-tag">Industrial Design · DFM</div></div>
+      <div><div class="proj-num">05 / 06</div><h2 class="proj-hero-name">Pressur</h2><div class="proj-hero-tag">Industrial Design · DFM</div></div>
       <div class="project-hero-right"><p class="proj-hero-desc">Tire inflator reinvented for the road. Injection-moldable, saddle-mounted, with rider visibility built in.</p><span class="btn-outline-white">View Project →</span></div>
     </div>
   </div>
@@ -316,7 +338,7 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
     <div class="project-card" data-goto="eventide" style="display:block">
       <div style="display:grid;grid-template-columns:1fr 1fr">
         <div class="project-card-visual" style="height:440px;background-image:url(images/card_eventide.jpg)"></div>
-        <div class="project-card-info" style="padding:3.5rem;justify-content:center"><div class="project-card-top"><span class="project-card-num">05 / 05</span><span class="project-card-tag">3D Printing · Electronics</span></div><h3 class="project-card-name" style="font-size:2.6rem;margin-bottom:1rem;line-height:1">Eventide<br>Ambient Light</h3><p class="project-card-line" style="font-size:14px;margin-bottom:1.5rem">Snap-fit enclosure for Adafruit Circuit Playground. No screws. No glue. A custom light pipe channels NeoPixel glow into ambient light.</p><span class="project-card-cta">View Project →</span></div>
+        <div class="project-card-info" style="padding:3.5rem;justify-content:center"><div class="project-card-top"><span class="project-card-num">06 / 06</span><span class="project-card-tag">3D Printing · Electronics</span></div><h3 class="project-card-name" style="font-size:2.6rem;margin-bottom:1rem;line-height:1">Eventide<br>Ambient Light</h3><p class="project-card-line" style="font-size:14px;margin-bottom:1.5rem">Snap-fit enclosure for Adafruit Circuit Playground. No screws. No glue. A custom light pipe channels NeoPixel glow into ambient light.</p><span class="project-card-cta">View Project →</span></div>
       </div>
     </div>
   </div>
@@ -339,7 +361,7 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
   <div class="skills-top"><h2 class="skills-heading">Built to<br><em>make things.</em></h2>
     <p class="skills-sub">From idea to prototype — every tool, every process, in service of the object.</p></div>
   <div class="skills-grid">
-    <div class="skill-col"><div class="skill-col-label">Design Process</div><div class="skill-tags"><span class="skill-chip">User Research</span><span class="skill-chip">Ideation</span><span class="skill-chip">Prototyping</span><span class="skill-chip">User Testing</span><span class="skill-chip">Ergonomics</span><span class="skill-chip">Inclusive Design</span><span class="skill-chip">Design for Mfg.</span></div></div>
+    <div class="skill-col"><div class="skill-col-label">Design Process</div><div class="skill-tags"><span class="skill-chip">User Research</span><span class="skill-chip">Systems Design</span><span class="skill-chip">Ideation</span><span class="skill-chip">Prototyping</span><span class="skill-chip">User Testing</span><span class="skill-chip">Ergonomics</span><span class="skill-chip">Inclusive Design</span><span class="skill-chip">Design for Mfg.</span></div></div>
     <div class="skill-col"><div class="skill-col-label">Software</div><div class="skill-tags"><span class="skill-chip">SolidWorks</span><span class="skill-chip">Rhino 3D</span><span class="skill-chip">KeyShot</span><span class="skill-chip">Adobe Suite</span><span class="skill-chip">Figma</span><span class="skill-chip">AutoCAD</span></div></div>
     <div class="skill-col"><div class="skill-col-label">Making</div><div class="skill-tags"><span class="skill-chip">3D Printing (FDM)</span><span class="skill-chip">Woodworking</span><span class="skill-chip">Laser Cutting</span><span class="skill-chip">Hand Mockups</span><span class="skill-chip">Electronics</span><span class="skill-chip">Inj. Molding</span></div></div>
   </div></div></section>
@@ -356,7 +378,77 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
 </div></footer>
 </div>
 
-<div id="project-root"><div class="project-page" id="proj-32x32">
+<div id="project-root"><div class="project-page" id="proj-starterspark">
+  <div class="pp-nav">
+    <a class="pp-back" data-back>← All Work</a>
+    <span class="pp-nav-title">STARTER-SPARK</span>
+    <a href="#contact-cta" data-close class="pp-nav-cta">Hire Me</a>
+  </div>
+  <div class="pp-hero">
+    <div class="pp-hero-bg" style="background-image:url(images/hero_starterspark.jpg)"></div>
+    <div class="pp-hero-overlay"></div>
+    <div class="pp-hero-content">
+      <div class="pp-num">Project 01 / 06 · M.S. Thesis</div>
+      <h1 class="pp-title">Starter<em>Spark</em></h1>
+      <div class="pp-tag">Systems Design · Inclusive STEM · Product Design</div>
+    </div>
+  </div>
+  <div class="pp-overview">
+    <div class="pp-ov-left">
+      <div class="pp-tagline">Electronics that teach themselves</div>
+      <p class="pp-desc">My M.S. thesis: a beginner electronics kit for teens and early-adult learners who find breadboarding intimidating. Field research showed the problem was never effort — it was friction. Components are tiny and fragile, resistor bands are unreadable, 2D diagrams don't translate to the board, and parts get lost between sessions. StarterSpark answers all of that at the level of the <em>system</em> — redesigned components, visual overlays, visual-heavy instructions and inventory-ready storage, each engineered to reinforce the others so a first-time builder can succeed independently.</p>
+    </div>
+    <div class="pp-ov-right">
+      <div class="pp-crit-label">Research Insights</div>
+      <ul class="pp-crit"><li>Diagrams too small — hard to read resistor bands and match breadboard holes</li><li>Components physically difficult — too small, fiddly and fragile to handle</li><li>Resistors widely misunderstood — function unclear, not just placement</li><li>Placement errors tied to poor visual clarity, not lack of effort</li><li>Visual guidance carried the entire learning experience</li><li>No parts-organization system — sorting and storage a clear need</li></ul>
+    </div>
+  </div>
+
+  <div class="pp-section-label"><span>The System</span></div>
+  <div class="pp-system-intro"><p>Four parts, designed as one. <em>Each pillar removes a specific point of failure — and together they turn a loose pile of parts into a guided, repeatable, plug-and-play experience.</em></p></div>
+  <div class="pp-system">
+    <div class="sys-cell"><span class="sys-num">Pillar 01</span><h4>Redesigned Components</h4><p>Larger, robust, clearly-labeled parts that can be handled, read and reused over and over. A plug-and-play language shared across the whole kit.</p></div>
+    <div class="sys-cell"><span class="sys-num">Pillar 02</span><h4>Visual Overlay Templates</h4><p>A printed map that sits on the breadboard, showing exactly what goes where, masking unused pins and making the power-busbar logic legible at a glance.</p></div>
+    <div class="sys-cell"><span class="sys-num">Pillar 03</span><h4>Visual-Heavy Instructions</h4><p>3D-style, step-by-step guidance that shows component count, orientation and placement — so building is followed visually, not decoded from 2D schematics.</p></div>
+    <div class="sys-cell"><span class="sys-num">Pillar 04</span><h4>Inventory-Ready Storage</h4><p>A compartmentalized, reusable case that keeps every part sorted and lets a facilitator confirm at a glance that nothing is missing before or after a session.</p></div>
+  </div>
+
+  <div class="pp-section-label"><span>The Solutions</span></div>
+  <div class="pp-process"><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/ss_breadboard.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Solution 01 · Component</span><h4>Redesigned Breadboard</h4><p>Increased pitch between rows and a higher pin count per row cut the visual clutter of unused holes. Wider spacing reduces crowding and lets components spread out without overlapping connections — yet it stays fully compatible with standard breadboards, so it drops into existing setups with no adapters.</p></div>
+        </div><div class="proc-row proc-row-rev">
+          <div class="proc-img" style="background-image:url(images/ss_ledholder.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Solution 02 · Component</span><h4>LED Holder</h4><p>An outer housing that fixes the recurring polarity error. Color association — red for positive, black for negative — plus a flat edge on the negative side give both a visual and tactile signifier, so learners identify polarity correctly and confidently before they ever plug in.</p></div>
+        </div><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/ss_resistor.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Solution 03 · Component</span><h4>Redesigned Resistor</h4><p>An enclosed, larger housing with the resistance value printed right on top — no color-band decoding required. Thicker, bend-resistant pins survive repeated insertion, turning a fragile, easily-misplaced part into a durable plug-and-play module with standard and large-breadboard variants.</p></div>
+        </div><div class="proc-row proc-row-rev">
+          <div class="proc-img" style="background-image:url(images/ss_potentiometer.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Solution 04 · Component</span><h4>Variable Resistor / Potentiometer</h4><p>A larger, commercial-grade potentiometer with a notch that clips onto the breadboard's dovetail joint — holding it securely without consuming any pin rows. It connects through short wires for flexible placement, freeing board space and keeping the build clean and easy to replicate.</p></div>
+        </div><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/ss_overlay.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Solution 05 · Guide</span><h4>Visual Overlay Template</h4><p>A printed map of the breadboard that shows exactly where each component sits and how the busbars run, while physically covering unused pins to cut visual noise and prevent accidental misconnections. It measurably improved the speed and confidence with which testers assembled a circuit.</p></div>
+        </div><div class="proc-row proc-row-rev">
+          <div class="proc-img" style="background-image:url(images/ss_overlay_use.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Solution 05 · In Use</span><h4>Overlay, Deployed</h4><p>With the redesigned components seated into the overlay, the connection logic reads almost like a diagram laid directly onto the hardware — the gap between schematic and physical build effectively disappears.</p></div>
+        </div><div class="proc-row-exploded">
+          <div class="proc-text"><span class="proc-step">Solution 06 · Guide</span><h4>Visual-Heavy Instructions</h4><p>Interviews showed 2D diagrams were the single hardest thing to interpret. The fix: 3D-style, step-by-step visuals paired with plain-language steps that show how many components are needed, their correct orientation, and how everything goes together — reducing confusion and giving users the confidence to attempt more complex projects.</p></div>
+          <div class="proc-img"><img src="images/ss_instructions.jpg" alt="Visual-heavy step-by-step instruction sheet"></div>
+        </div><div class="proc-row">
+          <div class="proc-img" style="background-image:url(images/ss_packaging.jpg)"></div>
+          <div class="proc-text"><span class="proc-step">Solution 07 · Storage</span><h4>Reusable Packaging</h4><p>A compartmentalized case gives every part a dedicated home, cutting the time spent hunting through loose components and minimizing lost or damaged pieces. The layout doubles as an inventory check — a quick visual scan confirms nothing is missing, keeping facilitators ready for repeated use across multiple workshops.</p></div>
+        </div></div>
+  <div class="pp-section-label dark"><span>Validated With Beginners</span></div>
+  <div class="pp-final"><figure class="fin-item fin-big"><div class="fin-img" style="background-image:url(images/hero_starterspark.jpg)"></div><figcaption>The complete StarterSpark kit — components, overlay templates, guided instructions and inventory-ready storage as one system.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/ss_usertest1.jpg)"></div><figcaption>User testing: a first-time builder assembles a circuit using the overlay template and visual instructions.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/ss_usertest2.jpg)"></div><figcaption>Redesigned components seating into the overlay — testers reported faster, more confident builds.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/ss_packaging.jpg)"></div><figcaption>The reusable case keeps parts sorted and makes inventory a single glance.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/card_starterspark.jpg)"></div><figcaption>Closed and packed — the kit designed to survive repeated classroom use.</figcaption></figure><figure class="fin-item fin-exploded"><div class="fin-img"><img src="images/ss_instructions.jpg" alt=""></div><figcaption>The visual-heavy instruction sheet that carried the learning experience from first part to finished circuit.</figcaption></figure></div>
+  <a class="pp-next" data-goto="32x32">
+    <div class="pp-next-inner">
+      <span class="pp-next-label">Next Project →</span>
+      <span class="pp-next-name">32×32</span>
+    </div>
+    <div class="pp-next-bg" style="background-image:url(images/hero_32x32.jpg)"></div>
+  </a>
+</div><div class="project-page" id="proj-32x32">
   <div class="pp-nav">
     <a class="pp-back" data-back>← All Work</a>
     <span class="pp-nav-title">32×32</span>
@@ -366,7 +458,7 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
     <div class="pp-hero-bg" style="background-image:url(images/hero_32x32.jpg)"></div>
     <div class="pp-hero-overlay"></div>
     <div class="pp-hero-content">
-      <div class="pp-num">Project 01 / 05</div>
+      <div class="pp-num">Project 02 / 06</div>
       <h1 class="pp-title">32<em>×</em>32</h1>
       <div class="pp-tag">Furniture Design · Prototyping</div>
     </div>
@@ -420,7 +512,7 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
     <div class="pp-hero-bg" style="background-image:url(images/hero_drivedeck.jpg)"></div>
     <div class="pp-hero-overlay"></div>
     <div class="pp-hero-content">
-      <div class="pp-num">Project 02 / 05</div>
+      <div class="pp-num">Project 03 / 06</div>
       <h1 class="pp-title">Drive<em>Deck</em></h1>
       <div class="pp-tag">Inclusive Design · Healthcare Collaboration</div>
     </div>
@@ -471,7 +563,7 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
     <div class="pp-hero-bg" style="background-image:url(images/hero_pentel.jpg)"></div>
     <div class="pp-hero-overlay"></div>
     <div class="pp-hero-content">
-      <div class="pp-num">Project 03 / 05</div>
+      <div class="pp-num">Project 04 / 06</div>
       <h1 class="pp-title">Pentel<em> Nomics</em></h1>
       <div class="pp-tag">Product Design · Ergonomics</div>
     </div>
@@ -522,7 +614,7 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
     <div class="pp-hero-bg" style="background-image:url(images/hero_pressur.jpg)"></div>
     <div class="pp-hero-overlay"></div>
     <div class="pp-hero-content">
-      <div class="pp-num">Project 04 / 05</div>
+      <div class="pp-num">Project 05 / 06</div>
       <h1 class="pp-title">Pressur</h1>
       <div class="pp-tag">Industrial Design · Design for Manufacturing</div>
     </div>
@@ -570,7 +662,7 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
     <div class="pp-hero-bg" style="background-image:url(images/hero_eventide.jpg)"></div>
     <div class="pp-hero-overlay"></div>
     <div class="pp-hero-content">
-      <div class="pp-num">Project 05 / 05</div>
+      <div class="pp-num">Project 06 / 06</div>
       <h1 class="pp-title">Eventide<em> Ambient Light</em></h1>
       <div class="pp-tag">Product Design · 3D Printing · Electronics</div>
     </div>
@@ -604,12 +696,12 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
         </div></div>
   <div class="pp-section-label dark"><span>Final Design</span></div>
   <div class="pp-final"><figure class="fin-item fin-big"><div class="fin-img" style="background-image:url(images/hero_eventide.jpg)"></div><figcaption>The finished Eventide ambient light, nacelles glowing red against a cyan saucer.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/card_eventide.jpg)"></div><figcaption>The light staged on its halo platform — the signature ambient glow.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/ev_final_lit.jpg)"></div><figcaption>Head-on: red nacelles and a blue core, every channel lit by a single Circuit Playground.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/ev_detail1.jpg)"></div><figcaption>Section through the lower body and nacelle, showing the internal structure and snap detail.</figcaption></figure><figure class="fin-item"><div class="fin-img" style="background-image:url(images/ev_detail2.jpg)"></div><figcaption>Top-down into the saucer: the three light-pipe legs splay out from the central core to feed each channel.</figcaption></figure></div>
-  <a class="pp-next" data-goto="32x32">
+  <a class="pp-next" data-goto="starterspark">
     <div class="pp-next-inner">
       <span class="pp-next-label">Next Project →</span>
-      <span class="pp-next-name">32×32</span>
+      <span class="pp-next-name">StarterSpark</span>
     </div>
-    <div class="pp-next-bg" style="background-image:url(images/hero_32x32.jpg)"></div>
+    <div class="pp-next-bg" style="background-image:url(images/hero_starterspark.jpg)"></div>
   </a>
 </div></div>
 
