@@ -42,7 +42,7 @@ nav.scrolled .nav-links a{color:var(--gray)} nav.scrolled .nav-links a:hover{col
 nav.scrolled .nav-cta{color:var(--black);border-color:var(--black)} nav.scrolled .nav-cta:hover{background:var(--black);color:#fff}
 
 /* HERO */
-#hero{height:100vh;min-height:640px;background:var(--black);display:flex;flex-direction:column;justify-content:flex-end;padding:0 2.5rem 5rem;position:relative;overflow:hidden}
+#hero{height:100vh;min-height:640px;background:var(--black);display:flex;flex-direction:column;justify-content:flex-end;padding:96px 2.5rem 5rem;position:relative;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0F0F0F,#1A1A1A 50%,#0A0A0A);z-index:0}
 .hero-bg::after{content:'';position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
 .hero-content{position:relative;z-index:2}
@@ -228,7 +228,11 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes slowzoom{from{transform:scale(1.08)}to{transform:scale(1)}}
 
-@media(max-width:900px){
+@media (max-height:820px) and (min-width:901px){
+  .hero-title{font-size:clamp(3rem,8vw,7rem);margin-bottom:2rem}
+  .hero-eyebrow{margin-bottom:1rem}
+}
+  @media(max-width:900px){
   body{cursor:auto} .cursor{display:none}
   nav{padding:0 1.25rem;height:56px} .nav-links{display:none}
   #hero{padding:0 1.25rem 3rem} .hero-bottom{flex-direction:column;align-items:flex-start;gap:2rem} .hero-actions{align-items:flex-start}
