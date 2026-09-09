@@ -419,14 +419,55 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
       <div class="pp-tag">Systems Design · Inclusive STEM · Product Design</div>
     </div>
   </div>
-  <div class="pp-overview">
+  <div class="pp-overview" style="display:block">
     <div class="pp-ov-left">
       <div class="pp-tagline">Electronics that teach themselves</div>
-      <p class="pp-desc">My M.S. thesis: a beginner electronics kit for teens and early-adult learners who find breadboarding intimidating. Field research showed the problem was never effort — it was friction. Components are tiny and fragile, resistor bands are unreadable, 2D diagrams don't translate to the board, and parts get lost between sessions. StarterSpark answers all of that at the level of the <em>system</em> — redesigned components, visual overlays, visual-heavy instructions and inventory-ready storage, each engineered to reinforce the others so a first-time builder can succeed independently.</p>
+      <p class="pp-desc" style="max-width:860px">My M.S. thesis: a beginner electronics kit for teens and early-adult learners who find breadboarding intimidating. Field research showed the problem was never effort — it was friction. Components are tiny and fragile, resistor bands are unreadable, 2D diagrams don't translate to the board, and parts get lost between sessions. StarterSpark answers all of that at the level of the <em>system</em> — redesigned components, visual overlays, visual-heavy instructions and inventory-ready storage, each engineered to reinforce the others so a first-time builder can succeed independently.</p>
     </div>
-    <div class="pp-ov-right">
-      <div class="pp-crit-label">Research Insights</div>
-      <ul class="pp-crit"><li>Diagrams too small — hard to read resistor bands and match breadboard holes</li><li>Components physically difficult — too small, fiddly and fragile to handle</li><li>Resistors widely misunderstood — function unclear, not just placement</li><li>Placement errors tied to poor visual clarity, not lack of effort</li><li>Visual guidance carried the entire learning experience</li><li>No parts-organization system — sorting and storage a clear need</li></ul>
+  </div>
+
+  <div class="pp-section-label"><span>Research Insights</span></div>
+  <style>
+    .ri-band{max-width:1500px;margin:0 auto;padding:1rem 2.5rem 4rem}
+    .ri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem 2rem}
+    .ri-card{margin:0}
+    .ri-img{aspect-ratio:9/16;background-color:var(--light);background-size:cover;background-position:center;border:1px solid var(--border);margin-bottom:1.25rem}
+    .ri-num{display:block;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem}
+    .ri-text{font-size:15px;line-height:1.6;color:#333}
+    @media(max-width:900px){.ri-band{padding:1rem 1.25rem 3rem}.ri-grid{grid-template-columns:1fr 1fr;gap:1.5rem 1rem}}
+  </style>
+  <div class="ri-band">
+    <div class="ri-grid">
+      <figure class="ri-card">
+        <div class="ri-img" style="background-image:url(images/ss_insight_1.jpg)"></div>
+        <span class="ri-num">Insight 01</span>
+        <p class="ri-text">Diagrams too small: hard to read resistor bands and match breadboard holes.</p>
+      </figure>
+      <figure class="ri-card">
+        <div class="ri-img" style="background-image:url(images/ss_insight_2.jpg)"></div>
+        <span class="ri-num">Insight 02</span>
+        <p class="ri-text">Components physically difficult: too small, fiddly and fragile to handle.</p>
+      </figure>
+      <figure class="ri-card">
+        <div class="ri-img" style="background-image:url(images/ss_insight_3.jpg)"></div>
+        <span class="ri-num">Insight 03</span>
+        <p class="ri-text">Resistors widely misunderstood: function unclear, not just placement.</p>
+      </figure>
+      <figure class="ri-card">
+        <div class="ri-img" style="background-image:url(images/ss_insight_4.jpg)"></div>
+        <span class="ri-num">Insight 04</span>
+        <p class="ri-text">Placement errors tied to poor visual clarity, not lack of effort.</p>
+      </figure>
+      <figure class="ri-card">
+        <div class="ri-img" style="background-image:url(images/ss_insight_5.jpg)"></div>
+        <span class="ri-num">Insight 05</span>
+        <p class="ri-text">Visual guidance carried the entire learning experience.</p>
+      </figure>
+      <figure class="ri-card">
+        <div class="ri-img" style="background-image:url(images/ss_insight_6.jpg)"></div>
+        <span class="ri-num">Insight 06</span>
+        <p class="ri-text">No parts-organization system: sorting and storage a clear need.</p>
+      </figure>
     </div>
   </div>
 
