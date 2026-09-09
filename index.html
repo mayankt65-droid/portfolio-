@@ -921,9 +921,19 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
 
   <div class="pp-section-label"><span>The Work</span></div>
   <div class="pp-process">
-    <div class="proc-row">
-      <div class="proc-img" style="background-image:url(images/arch_sm_growing.jpg)"></div>
-      <div class="proc-text"><span class="proc-step">01 · Role</span><h4>From Render to Fabrication</h4><p>Across 2021 I worked the exhibits from 3D visualisation to the CAD and fabrication drawings behind them, and through the tender submission. Design you build, not just present.</p></div>
+       <div class="proc-row-exploded">
+      <div class="proc-text"><span class="proc-step">01 · Role</span><h4>From Render to Fabrication</h4><p>Across 2021 I worked the exhibits from 3D visualisation to the CAD and fabrication drawings behind them, and through the tender submission. Design you build, not just present. The floating staircase shown here is one example, drawn from render through to the fabrication drawing behind it.</p></div>
+      <style>
+        .sm-pair{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch}
+        .sm-pair .sm-render{height:440px;background-size:cover;background-position:center;background-color:var(--light)}
+        .sm-pair .sm-dwg{display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--border);padding:1.5rem}
+        .sm-pair .sm-dwg img{max-width:100%;max-height:440px;width:auto;height:auto;display:block}
+        @media(max-width:900px){.sm-pair{grid-template-columns:1fr;gap:1rem}.sm-pair .sm-render{height:280px}.sm-pair .sm-dwg img{max-height:420px}}
+      </style>
+      <div class="sm-pair">
+        <div class="sm-render" style="background-image:url(images/arch_sm_growing.jpg)"></div>
+        <div class="sm-dwg"><img src="images/arch_sm_stair_dwg.jpg" alt="Floating staircase fabrication drawing"></div>
+      </div>
     </div>
     <div class="proc-row proc-row-rev">
       <div class="proc-img" style="background-image:url(images/arch_sm_bunga.jpg)"></div>
@@ -948,6 +958,7 @@ footer{background:var(--black);border-top:1px solid #1A1A1A;padding:2.2rem 2.5re
     <figure class="fin-item fin-big"><div class="fin-img" style="background-image:url(images/arch_sm_hero.jpg)"></div><figcaption>The traditional bunga, rebuilt as a walk-in exhibit. Smritivan Memorial, Bhuj.</figcaption></figure>
     <figure class="fin-item"><div class="fin-img" style="background-image:url(images/arch_sm_doors.jpg)"></div><figcaption>The collective door installation around the loom.</figcaption></figure>
     <figure class="fin-item"><div class="fin-img" style="background-image:url(images/arch_sm_rethink.jpg)"></div><figcaption>The Rethink gallery: lacquered trapezium tables and overhead projection.</figcaption></figure>
+    <figure class="fin-item fin-big"><div class="fin-img" style="background-image:url(images/arch_sm_render2.jpg)"></div><figcaption>Additional exhibit render.</figcaption></figure>
     <figure class="fin-item fin-exploded"><div class="fin-img"><img src="images/arch_sm_bunga_dwg.jpg" alt=""></div><figcaption>The bunga detailed for fabrication: sections, elevations and plans.</figcaption></figure>
   </div>
   <a class="pp-next" data-goto="arch-qic">
